@@ -1,21 +1,25 @@
-import { getCurrentUser } from "@/app/actions/getCurrentUser"
-import CardCount from "./CardCount"
-import HamburgerMenu from "./HamburgerMenu"
-import Logo from "./Logo"
-import Search from "./Search"
-import User from "./User"
+import { getCurrentUser } from "@/app/actions/getCurrentUser";
+import CardCount from "./CardCount";
+import HamburgerMenu from "./HamburgerMenu";
+import Logo from "./Logo";
+import Search from "./Search";
+import User from "./User";
 
 const Navbar = async () => {
-  const currentUser = await getCurrentUser()
+  const currentUser = await getCurrentUser();
   return (
-    <div className="flex items-center justify-between gap-3 md:gap-10 px-3 md:px-10 h-16 bg-pink-200 text-slate-100">
-      <Logo/>
-      <Search/>
-      <CardCount/>
-      <User currentUser = {currentUser}/>
-      <HamburgerMenu/>
-    </div>
-  )
-}
+    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm">
+      <div className="max-w-7xl mx-auto flex items-center justify-between gap-4 md:gap-8 px-4 md:px-10 h-20 text-gray-800">
+        <Logo />
+        <Search />
+        <div className="flex items-center gap-4 md:gap-6">
+          <CardCount />
+          <User currentUser={currentUser} />
+          <HamburgerMenu />
+        </div>
+      </div>
+    </header>
+  );
+};
 
-export default Navbar
+export default Navbar;

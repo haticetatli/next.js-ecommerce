@@ -8,9 +8,14 @@ const Logo = () => {
   return (
     <div
       onClick={() => router.push("/")}
-      className="bg-pink-200 px-2 py-1 rounded-md text-lg md:text-2xl cursor-pointer"
+      className="cursor-pointer font-black text-2xl md:text-3xl tracking-tight flex items-center gap-1 group select-none"
     >
-      Tatli<span className="text-sm">.com</span>
+      <span className="bg-gradient-to-r from-pink-600 to-rose-600 bg-clip-text text-transparent">
+        Tatli
+      </span>
+      <span className="bg-pink-600 text-white text-[11px] font-bold px-1.5 py-0.5 rounded-md shadow-sm">
+        .com
+      </span>
     </div>
   );
 };

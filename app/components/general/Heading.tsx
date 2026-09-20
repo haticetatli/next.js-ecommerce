@@ -1,11 +1,18 @@
 interface HeadingProps {
-   center?: boolean
-   text: string 
-}
-const Heading:React.FC<HeadingProps> = ({center, text}) => {
-  return (
-    <div className={`text-slate-500 my-3 md:my-10 px-3 md:px-10 md:text-xl ${center ? "text-center" : "text-start"}`}>{text}</div>
-  )
+  center?: boolean;
+  text: string;
 }
 
-export default Heading
+const Heading: React.FC<HeadingProps> = ({ center, text }) => {
+  return (
+    <h2
+      className={`text-2xl md:text-3xl font-extrabold tracking-tight text-gray-900 ${
+        center ? "text-center" : "text-left"
+      }`}
+    >
+      {text}
+    </h2>
+  );
+};
+
+export default Heading;

@@ -9,10 +9,13 @@ interface Review {
 }
 
 interface Product {
-  id: number;
+  id: string | number;
   image: string;
   name: string;
   price: number;
+  brand?: string;
+  category?: string;
+  inStock?: boolean;
   reviews?: Review[];
 }
 
@@ -24,6 +27,7 @@ const Products = () => {
     const fetchProducts = async () => {
       try {
         const res = await fetch("/api/products");
+        if (!res.ok) throw new Error("API isteği başarısız oldu");
         const data = await res.json();
         setProducts(data);
       } catch (error) {
@@ -37,18 +41,26 @@ const Products = () => {
   }, []);
 
   return (
-    <div>
-      <Heading text="Tüm Ürünler" />
+    <section className="py-8">
+      <div className="max-w-7xl mx-auto px-4 md:px-10 mb-6">
+        <Heading text="Tüm Ürünler" center={false} />
+      </div>
+
       {loading ? (
-        <p className="text-center text-gray-500 mt-4">Ürünler yükleniyor...</p>
+        <div className="flex flex-col justify-center items-center py-16 gap-3">
+          <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-pink-500"></div>
+          <p className="text-sm text-gray-500 font-medium">Ürünler listeleniyor...</p>
+        </div>
+      ) : products.length === 0 ? (
+        <div className="text-center py-16 text-gray-500">Henüz ürün bulunamadı.</div>
       ) : (
-        <div className="flex items-center flex-wrap gap-3 md:gap-10 px-3 md:px-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-7xl mx-auto px-4 md:px-10 mb-12">
           {products.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
       )}
-    </div>
+    </section>
   );
 };
 
