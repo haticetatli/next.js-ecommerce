@@ -1,4 +1,4 @@
-# Tatli.com - Full-Stack E-Commerce Platform
+# Tatli.com - Modern Full-Stack E-Ticaret Platformu
 
 <div align="center">
 
@@ -13,270 +13,270 @@
 [![CI](https://img.shields.io/badge/CI-GitHub_Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white)](https://github.com/haticetatli/next.js-ecommerce/actions)
 
 <p align="center">
-  <strong>Production-ready e-commerce web application engineered with Next.js 15 App Router, React 19, TypeScript, and Tailwind CSS v4.</strong>
+  <strong>Next.js 15 App Router, React 19, TypeScript ve Tailwind CSS v4 ile geliştirilmiş üretime hazır tam kapsamlı e-ticaret platformu.</strong>
 </p>
 
 <p align="center">
-  <a href="#project-overview">Overview</a> •
-  <a href="#system-architecture">Architecture</a> •
-  <a href="#key-functional-modules">Features</a> •
-  <a href="#technology-stack-breakdown">Tech Stack</a> •
-  <a href="#automated-unit-testing">Tests</a> •
-  <a href="#local-installation--setup">Getting Started</a> •
-  <a href="#author--engineering-contact">Author</a>
+  <a href="#proje-özeti">Proje Özeti</a> •
+  <a href="#sistem-mimarisi">Sistem Mimarisi</a> •
+  <a href="#temel-fonksiyonel-modüller">Temel Modüller</a> •
+  <a href="#teknoloji-yığını">Teknoloji Yığını</a> •
+  <a href="#otomatik-birim-testleri">Birim Testleri</a> •
+  <a href="#yerel-kurulum--çalıştırma">Kurulum Rehberi</a> •
+  <a href="#geliştirici--iletişim">İletişim</a>
 </p>
 
 </div>
 
 ---
 
-## Project Overview
+## Proje Özeti
 
-Tatli.com is an enterprise-grade full-stack e-commerce web platform developed by **Hatice Tatlı**. Designed with clean architecture, strict TypeScript typing, offline-resilient data fallbacks, and modern UI/UX design patterns, the application showcases complete end-to-end web engineering capabilities.
+Tatli.com, **Hatice Tatlı** tarafından modern web mimarisi standartları gözetilerek geliştirilmiş, kurumsal seviyede bir full-stack e-ticaret platformudur. Temiz mimari (Clean Architecture), katı TypeScript tip güvenliği, sıfır kesinti toleranslı veri yedekleme katmanı ve kullanıcı odaklı UI/UX tasarımıyla uçtan uca eksiksiz bir yazılım mühendisliği portföy çalışması sunar.
 
-The platform includes a curated 30-item catalog across 6 distinct categories, real-time URL query synchronized search and multi-criteria sorting, a tiered shipping progress calculator, an interactive coupon discount engine, multi-step checkout with printable receipts, an administrative backoffice, and an interactive shipment tracking timeline.
+Platform; 6 farklı kategoride zenginleştirilmiş 30 ürünlük katalog, tarayıcı URL parametreleriyle gerçek zamanlı senkronize çalışan arama ve çok kriterli sıralama mekanizması, baremli ücretsiz kargo hesaplayıcısı, interaktif kupon ve promosyon motoru, yazdırılabilir makbuz destekli çok adımlı sipariş tamamlama süreci, yönetim paneli (Backoffice) ve canlı sipariş kargo takip zaman çizelgesi gibi modern e-ticaret gereksinimlerinin tümünü bünyesinde barındırır.
 
 ---
 
-## System Architecture
+## Sistem Mimarisi
 
 ```mermaid
 flowchart TD
-    subgraph ClientLayer ["Client Presentation Layer (Browser)"]
-        UI["Tailwind CSS v4 Responsive Layout"]
-        CartStore["useCart Hook (LocalStorage + Coupon Engine)"]
-        Wishlist["Wishlist State (Custom Window Events)"]
-        FilterEngine["URL Sync Search & Filter Utilities"]
+    subgraph IstemciKatmani ["İstemci Sunum Katmanı (Tarayıcı)"]
+        UI["Tailwind CSS v4 Duyarlı Arayüz"]
+        CartStore["useCart Hook (LocalStorage + Kupon Motoru)"]
+        Wishlist["Favoriler Durumu (Özel Window Event)"]
+        FilterEngine["URL Senkronize Arama & Filtreleme"]
     end
 
-    subgraph AppRouterLayer ["Next.js 15 App Router"]
-        HomePage["/ (Showcase, Categories & Products Grid)"]
-        ProductPage["/product/:id (Detail, Specs & Reviews)"]
-        CartPage["/cart (Shipping Progress & Coupons)"]
-        CheckoutPage["/checkout (Address & Delivery Wizard)"]
-        SuccessPage["/checkout/success (Printable Order Receipt)"]
-        TrackPage["/tracking (Interactive Shipment Timeline)"]
-        AdminArea["/admin & /admin/products (Backoffice Suite)"]
+    subgraph AppRouterKatmani ["Next.js 15 App Router Katmanı"]
+        HomePage["/ (Vitrin, Kategoriler & Ürün Izgarası)"]
+        ProductPage["/product/:id (Detay, Özellikler & Yorumlar)"]
+        CartPage["/cart (Kargo İlerlemesi & İndirim Kuponları)"]
+        CheckoutPage["/checkout (Adres & Teslimat Sihirbazı)"]
+        SuccessPage["/checkout/success (Yazdırılabilir Sipariş Fişi)"]
+        TrackPage["/tracking (İnteraktif Kargo Takip Çizelgesi)"]
+        AdminArea["/admin & /admin/products (Yönetim Paneli)"]
         Corporate["/about, /contact, /faq, /returns, /deals"]
     end
 
-    subgraph BackendLayer ["Backend Route Handlers"]
+    subgraph SunucuKatmani ["Sunucu API Uç Noktaları"]
         ProductsAPI["/api/products (GET, POST)"]
         ProductDetailAPI["/api/products/:id (GET, PUT, DELETE)"]
         RegisterAPI["/api/register (POST)"]
         AuthRoute["/api/auth/[...nextauth]"]
     end
 
-    subgraph DataResilience ["Data Layer with Automatic Resilience"]
+    subgraph VeriDayanikligi ["Otomatik Dayanıklılık Destekli Veri Katmanı"]
         PrismaClient["Prisma ORM 6.1"]
-        MongoAtlas[("MongoDB Atlas Cloud Cluster")]
-        InMemoryStore[("In-Memory Local Resilient Fallback")]
+        MongoAtlas[("MongoDB Atlas Bulut Kümesi")]
+        InMemoryStore[("Bellek İçi Yerel Yedek Veri Deposu")]
     end
 
-    UI --> AppRouterLayer
+    UI --> AppRouterKatmani
     CartStore --> CartPage
     CartStore --> CheckoutPage
-    Wishlist --> AppRouterLayer
+    Wishlist --> AppRouterKatmani
     FilterEngine --> HomePage
-    AppRouterLayer --> BackendLayer
-    BackendLayer --> PrismaClient
-    PrismaClient -->|Primary: Cluster Active| MongoAtlas
-    PrismaClient -.->|Fallback: Network or DNS Timeout| InMemoryStore
+    AppRouterKatmani --> SunucuKatmani
+    SunucuKatmani --> PrismaClient
+    PrismaClient -->|Birincil: Bulut Kümesi Aktif| MongoAtlas
+    PrismaClient -.->|Yedekleme: Ağ veya DNS Zaman Aşımı| InMemoryStore
 ```
 
 ---
 
-## Key Functional Modules
+## Temel Fonksiyonel Modüller
 
-### 1. Multi-Category Product Catalog (30 Products)
-- Six structured categories: Phones, Laptops, Smartwatches, Audio Accessories, Shoes, and Backpacks (5 products per category).
-- Universal image adapter supporting external HTTPS CDN links, relative static assets, and Base64 strings without cumulative layout shift.
-- Realistic pricing, technical descriptions, stock status indicators, and customer review scores.
+### 1. Zengin Ürün Kataloğu (30 Adet Ürün)
+- 6 yapılandırılmış kategori: Telefon, Laptop, Saat, Aksesuar, Ayakkabı ve Çanta (her kategoride 5 detaylı ürün).
+- Harici HTTPS CDN bağlantılarını, yerel statik varlıkları ve Base64 formatlarını kümülatif düzen kayması (CLS) olmadan işleyen evrensel görsel bağdaştırıcısı.
+- Gerçekçi fiyatlandırma, teknik açıklamalar, dinamik stok durumu ve müşteri değerlendirme puanları.
 
-### 2. URL-Synchronized Search, Filter & Sort Engine
-- Native Next.js URL parameter synchronization (`?category=...&search=...`) ensuring query states are bookmarkable and shareable across sessions.
-- Multi-criteria sorting:
-  - Price: Low to High
-  - Price: High to Low
-  - Highest Customer Rating
-  - Alphabetical: A to Z
-  - Featured Items
-- Instant in-stock filter toggle with zero latency.
-- Bilingually normalized category matching (supporting both Turkish and English labels).
+### 2. URL ile Senkronize Arama, Filtreleme ve Sıralama
+- Next.js yerel URL parametreleri (`?category=...&search=...`) ile tam senkronize çalışan, oturumlar arası paylaşılabilir ve yer imlerine eklenebilir filtre durumu.
+- Çoklu sıralama algoritmaları:
+  - Fiyata Göre: Artan (En Düşük)
+  - Fiyata Göre: Azalan (En Yüksek)
+  - En Yüksek Müşteri Puanı
+  - Alfabetik Sıralama: A'dan Z'ye
+  - Öne Çıkan Ürünler
+- Sıfır gecikmeli "Sadece Stoktakiler" filtre anahtarı.
+- Türkçe ve İngilizce kategori etiketlerini otomatik eşleyen normalizasyon altyapısı.
 
-### 3. Shopping Cart & Dynamic Coupon Engine
-- Threshold-based free shipping progress indicator (configured for orders over 500 TRY).
-- Interactive promo code validation:
-  - `TATLI10`: Applies 10% discount to the cart total.
-  - `TATLI20`: Applies 20% discount on carts valued at 1,000 TRY or higher.
-  - `KARGO`: Eliminates the 49.90 TRY shipping charge.
-- SSR hydration-safe storage model using custom `isMounted` guards to prevent hydration mismatches.
+### 3. Alışveriş Sepeti & Dinamik Kupon Motoru
+- 500 TL üzeri siparişlerde otomatik devreye giren baremli ücretsiz kargo ilerleme çubuğu.
+- İnteraktif promosyon kodu doğrulama sistemi:
+  - `TATLI10`: Sepet toplamına anında %10 indirim uygular.
+  - `TATLI20`: 1.000 TL ve üzeri sepetlerde %20 indirim sağlar.
+  - `KARGO`: 49,90 TL kargo ücretini sıfırlar.
+- SSR hidrasyon hatalarını engelleyen `isMounted` denetimli yerel depolama modeli.
 
-### 4. Multi-Step Checkout & Order Fulfillment
-- Recipient address validation (Full Name, Phone, City, District, and Street Address).
-- Shipping method selection between Standard Carrier Delivery and Express Courier Service.
-- Simulated 3D Secure credit card payment authorization.
-- Printable order confirmation screen (`/checkout/success`) providing alphanumeric tracking codes (e.g., `#ORD-829143-TR`), estimated arrival windows, and itemized receipts.
+### 4. Çok Adımlı Sipariş Tamamlama (Checkout) & Makbuz
+- Alıcı adres doğrulama (Ad Soyad, Telefon, İl, İlçe ve Açık Adres kontrolü).
+- Standart Teslimat veya Hızlı Kargo seçenekleri.
+- Güvenli 3D Secure kredi kartı ödeme simülasyonu.
+- Sipariş onay ekranı (`/checkout/success`) üzerinden alfanümerik takip kodu üretimi (`#TAT-XXXXXX`), tahmini teslimat tarihi gösterimi ve tek tıkla yazdırılabilir profesyonel sipariş fişi.
 
-### 5. Interactive Shipment Tracking (`/tracking`)
-- Real-time parcel status inquiry by order identifier or phone number.
-- Five-stage logistics timeline: Order Placed, Preparing & Packing, Handed to Carrier, Out for Delivery, Delivered.
-- One-click test chips for instant demonstration.
+### 5. İnteraktif Kargo Takip Sistemi (`/tracking`)
+- Takip numarası veya kayıtlı telefon numarası ile anlık kargo durumu sorgulama.
+- 5 aşamalı görsel lojistik zaman çizelgesi: Sipariş Alındı, Hazırlanıyor & Paketleniyor, Kargoya Verildi, Dağıtımda, Teslim Edildi.
+- Test amaçlı tek tıkla otomatik doldurulan örnek takip kodları.
 
-### 6. Persistent Wishlist (`/favorites`)
-- Client-side heart toggle on product cards with browser storage persistence.
-- Custom window event broadcasting that updates navbar badge counters across independent components.
-- Direct transfer of favorited products into the active shopping cart.
+### 6. Kalıcı Favoriler Listesi (`/favorites`)
+- Ürün kartları ve detay sayfalarında tarayıcı belleğine (LocalStorage) kaydedilen favori butonu.
+- Bağımsız bileşenler arasında navbar sayaçlarını anında senkronize eden özel `window` etkinlikleri.
+- Beğenilen ürünleri favoriler ekranından doğrudan sepete taşıma desteği.
 
-### 7. Administrative Backoffice Suite (`/admin`)
-- Metric summary cards: Total Revenue, Total Orders, Active Catalog Items, and User Count.
-- Inventory control table with live search, stock status toggles, in-place edit modals, and delete confirmations.
-- Dedicated product creation wizard (`/admin/products/new`) with live image preview.
+### 7. Yönetim Paneli & Envanter Kontrolü (`/admin`)
+- Özet metrik paneli: Toplam Ciro, Toplam Sipariş, Aktif Ürün Sayısı ve Kayıtlı Kullanıcı Adedi.
+- Canlı arama, stok açma/kapama, modal üzerinden anlık ürün güncelleme ve silme desteği sunan envanter yönetim tablosu.
+- Yeni ürün ekleme sihirbazı (`/admin/products/new`) ve gerçek zamanlı görsel önizleme alanı.
 
-### 8. Corporate & Customer Support Suite
-- Company Profile (`/about`): Corporate history, mission, vision, and operational metrics.
-- Support & Inquiry (`/contact`): Validated messaging form, customer service hotline, and location data.
-- Returns Policy (`/returns`): Step-by-step 14-day return and exchange guidelines.
-- Help Center (`/faq`): Categorized accordion view addressing common buyer inquiries.
-- Legal Documentation (`/privacy`, `/terms`): KVKK and GDPR compliant terms and privacy statements.
-
----
-
-## Zero-Downtime Data Layer Resilience
-
-Cloud database instances (such as free-tier MongoDB Atlas clusters) may undergo maintenance, pause during inactivity, or encounter DNS resolution delays in corporate networks. 
-
-To eliminate single points of failure, Tatli.com implements a resilient fallback architecture:
-- If Prisma successfully establishes a connection to MongoDB Atlas, all read and write queries execute against the cloud cluster.
-- If a connection timeout or DNS error occurs, the API route handlers automatically route requests to an in-memory replica store initialized from `utils/Products.tsx`.
-- This ensures that recruiters, visitors, and automated test runners experience zero downtime or 500 errors.
+### 8. Kurumsal Bilgi & Müşteri Hizmetleri Sayfaları
+- Kurumsal (`/about`): Şirket vizyonu, misyonu ve operasyonel güvenilirlik metrikleri.
+- İletişim (`/contact`): Doğrulamalı mesaj gönderme formu, doğrudan çağrı ve e-posta kanalları.
+- Kolay İade & Değişim (`/returns`): 14 gün koşulsuz iade sürecini açıklayan 4 adımlı rehber.
+- Sıkça Sorulan Sorular (`/faq`): Akordeon yapısında kategorize edilmiş arama destekli soru-cevap merkezi.
+- Yasal Belgeler (`/privacy`, `/terms`): KVKK ve GDPR uyumlu gizlilik sözleşmeleri.
 
 ---
 
-## Automated Unit Testing
+## Sıfır Kesinti & Veri Katmanı Dayanıklılığı
 
-The repository maintains an automated test suite executed via **Vitest**:
+Ücretsiz katmandaki bulut veritabanları (MongoDB Atlas gibi) zaman zaman bakım moduna geçebilir, hareketsizlik nedeniyle uykuya dalabilir veya kurumsal ağlardaki DNS kısıtlamalarına takılabilir.
+
+Platformda kullanıcı ve test deneyiminin asla kesintiye uğramaması adına çift katmanlı dayanıklılık mimarisi uygulanmıştır:
+- Prisma ORM üzerinden MongoDB Atlas kümesine bağlantı başarılıysa tüm okuma ve yazma işlemleri doğrudan bulut veritabanında yürütülür.
+- Herhangi bir bağlantı gecikmesi veya DNS zaman aşımı oluşursa, API uç noktaları istekleri kesintisiz şekilde `utils/Products.tsx` tabanlı bellek içi yerel veri deposuna yönlendirir.
+- Bu sayede İK uzmanları, değerlendiriciler ve otomatik test araçları hiçbir koşulda 500 sunucu hatasıyla karşılaşmaz.
+
+---
+
+## Otomatik Birim Testleri
+
+Proje, **Vitest** test altyapısı ile otomatikleştirilmiş birim test paketine sahiptir:
 
 ```bash
-# Run unit tests once:
+# Birim testlerini tek seferlik çalıştır:
 npm run test
 
-# Run unit tests in watch mode:
+# Testleri izleme (watch) modunda çalıştır:
 npm run test:watch
 ```
 
-### Test Coverage Summary:
-- **`tests/cartUtils.test.ts` (8 Tests):**
-  - Subtotal computation across varying item quantities.
-  - Free shipping threshold qualification logic.
-  - Percentage discount coupons (`TATLI10`, `TATLI20`) and shipping waivers (`KARGO`).
-  - Turkish Lira (`TRY`) currency formatting.
-- **`tests/filterUtils.test.ts` (5 Tests):**
-  - Case-insensitive category filtering with bilingual normalization.
-  - Multi-attribute text search across product names, brands, and descriptions.
-  - Stock availability isolation.
-  - Ascending and descending price ordering algorithms.
+### Test Kapsamı ve Detayları:
+- **`tests/cartUtils.test.ts` (8 Test):**
+  - Farklı ürün adetlerine göre ara toplam ve genel toplam hesaplama.
+  - Baremli ücretsiz kargo eşik kontrol mekanizması.
+  - Yüzdelik indirim kuponları (`TATLI10`, `TATLI20`) ve kargo muafiyeti (`KARGO`).
+  - Türk Lirası (`TRY`) para birimi formatlama algoritması.
+- **`tests/filterUtils.test.ts` (5 Test):**
+  - Büyük/küçük harf duyarsız ve iki dilli normalizasyonlu kategori filtreleme.
+  - Ürün adı, marka ve açıklama alanlarında çok kriterli metin araması.
+  - Stok durumuna göre ürün ayıklama.
+  - Artan ve azalan fiyat sıralama doğruluk kontrolleri.
 
 ---
 
-## Technology Stack Breakdown
+## Teknoloji Yığını
 
-| Layer | Technology | Function |
+| Katman | Teknoloji | Görevi ve Sorumluluğu |
 |---|---|---|
-| **Framework** | Next.js 15.4 (App Router) | Server and Client Components, API Route Handlers, Streaming SSR |
-| **Frontend Core** | React 19.0 | Concurrent features, hooks, component architecture |
-| **Language** | TypeScript 5.0 | Strict type safety across domain models, API payloads, and state |
-| **Styling** | Tailwind CSS v4 | High-performance CSS utility architecture |
-| **Database & ORM** | MongoDB Atlas + Prisma 6.1 | NoSQL cloud database model with typed schema client |
-| **Authentication** | NextAuth.js 4 + Bcrypt | Secure JWT session handling, credentials login, password hashing |
-| **Unit Testing** | Vitest 5.0 | Sub-second test execution engine |
-| **Component Kit** | React Icons, Material UI | Rating components and iconography |
-| **Alert System** | React Hot Toast | Lightweight notifications |
-| **CI Automation** | GitHub Actions | Automated build, lint, and test validation on commit |
+| **Web Çatısı** | Next.js 15.4 (App Router) | Sunucu ve İstemci Bileşenleri, API Route Handlers, Streaming SSR |
+| **Frontend Çekirdeği** | React 19.0 | Concurrent özellikler, modern hooks mimarisi |
+| **Programlama Dili** | TypeScript 5.0 | Katı tip güvenliği, veri modelleri ve arayüz sözleşmeleri |
+| **Stil ve Tasarım** | Tailwind CSS v4 | Yüksek performanslı CSS yardımcı sınıf mimarisi |
+| **Veritabanı & ORM** | MongoDB Atlas + Prisma 6.1 | NoSQL bulut veritabanı ve tipli şema istemcisi |
+| **Kimlik Doğrulama** | NextAuth.js 4 + Bcrypt | Güvenli JWT oturum yönetimi, parola hashleme |
+| **Birim Testleri** | Vitest 5.0 | Yüksek hızlı modern test çalıştırma motoru |
+| **Bileşen Seti** | React Icons, Material UI | İkonografi ve puanlama yıldızları bileşenleri |
+| **Bildirim Sistemi** | React Hot Toast | Hafif ve duyarlı kullanıcı bildirimleri |
+| **Sürekli Entegrasyon** | GitHub Actions | Otomatik derleme, lint ve test doğrulama hattı |
 
 ---
 
-## Project Directory Structure
+## Proje Dizin Yapısı
 
 ```text
 ├── .github/
 │   └── workflows/
-│       └── ci.yml               # Automated CI pipeline
+│       └── ci.yml               # Otomatik CI derleme ve test hattı
 ├── app/
-│   ├── about/                   # Company history and metrics
-│   ├── admin/                   # Administrative dashboard and inventory control
-│   ├── api/                     # REST Route Handlers
-│   ├── cart/                    # Shopping cart with coupon calculations
-│   ├── checkout/                # Checkout wizard and receipt generation
-│   ├── contact/                 # Customer service contact form
-│   ├── deals/                   # Promotional campaigns and coupon codes
-│   ├── faq/                     # Searchable accordion FAQ
-│   ├── favorites/               # Wishlist management
-│   ├── login/ & register/       # User authentication routes
-│   ├── privacy/ & terms/        # Legal compliance documents
-│   ├── product/[productId]/     # Dynamic product detail pages
-│   ├── profile/                 # User profile and order history
-│   ├── returns/                 # Return and exchange guidelines
-│   ├── tracking/                # Shipment tracking timeline
-│   ├── components/              # Modular UI components
-│   ├── layout.tsx               # Root Layout with Suspense boundaries
-│   └── page.tsx                 # Main showcase page
+│   ├── about/                   # Kurumsal bilgiler ve şirket vizyonu
+│   ├── admin/                   # Yönetim paneli ve ürün envanter kontrolü
+│   ├── api/                     # REST API sunucu uç noktaları
+│   ├── cart/                    # Alışveriş sepeti ve kupon hesaplamaları
+│   ├── checkout/                # Ödeme sihirbazı ve sipariş fişi üretimi
+│   ├── contact/                 # Müşteri hizmetleri iletişim formu
+│   ├── deals/                   # Kampanyalar ve indirim kuponları
+│   ├── faq/                     # Kategorize edilmiş Sıkça Sorulan Sorular
+│   ├── favorites/               # Favori ürünler listesi
+│   ├── login/ & register/       # Kullanıcı giriş ve kayıt sayfaları
+│   ├── privacy/ & terms/        # KVKK ve yasal sözleşmeler
+│   ├── product/[productId]/     # Dinamik ürün detay sayfaları
+│   ├── profile/                 # Kullanıcı profili ve sipariş geçmişi
+│   ├── returns/                 # İade ve değişim süreçleri rehberi
+│   ├── tracking/                # İnteraktif kargo takip ekranı
+│   ├── components/              # Modüler arayüz bileşenleri
+│   ├── layout.tsx               # Kök layout ve sağlayıcılar
+│   └── page.tsx                 # Ana vitrin sayfası
 ├── hooks/
-│   └── useCart.tsx              # Cart state and coupon management
+│   └── useCart.tsx              # Sepet durumu ve kupon yönetimi
 ├── prisma/
-│   └── schema.prisma            # MongoDB database models
-├── tests/                       # Automated Vitest test suites
-├── types/                       # Universal TypeScript interfaces
+│   └── schema.prisma            # MongoDB veri modelleri
+├── tests/                       # Otomatik Vitest test paketleri
+├── types/                       # Evrensel TypeScript tip tanımları
 ├── utils/
-│   ├── cartUtils.ts             # Financial and shipping calculation functions
-│   ├── filterUtils.ts           # Filtering and sorting functions
-│   └── Products.tsx             # 30-item curated fallback dataset
+│   ├── cartUtils.ts             # Finansal ve kargo hesaplama fonksiyonları
+│   ├── filterUtils.ts           # Arama, filtreleme ve sıralama algoritmaları
+│   └── Products.tsx             # 30 ürünlük yedek katalog veri seti
 └── package.json
 ```
 
 ---
 
-## Local Installation & Setup
+## Yerel Kurulum & Çalıştırma
 
-### 1. Clone the Repository
+### 1. Depoyu Klonlayın
 ```bash
 git clone https://github.com/haticetatli/next.js-ecommerce.git
 cd next.js-ecommerce
 ```
 
-### 2. Install Dependencies
+### 2. Bağımlılıkları Yükleyin
 ```bash
 npm install
 ```
 
-### 3. Configure Environment Variables
-Copy the sample environment file:
+### 3. Çevre Değişkenlerini Tanımlayın
+Örnek ortam dosyasını kopyalayın:
 ```bash
 cp .env.example .env
 ```
 
-Configure your credentials:
+`.env` dosyanızı yapılandırın:
 ```env
-DATABASE_URL="mongodb+srv://<username>:<password>@cluster0.mongodb.net/shop?retryWrites=true&w=majority"
-NEXTAUTH_SECRET="your_nextauth_secret_key"
-GOOGLE_CLIENT_ID="your_google_oauth_client_id"
-GOOGLE_CLIENT_SECRET="your_google_oauth_client_secret"
+DATABASE_URL="mongodb+srv://<kullanici_adi>:<parola>@cluster0.mongodb.net/shop?retryWrites=true&w=majority"
+NEXTAUTH_SECRET="guvenli_nextauth_gizli_anahtari"
+GOOGLE_CLIENT_ID="google_oauth_istemci_id"
+GOOGLE_CLIENT_SECRET="google_oauth_istemci_parolasi"
 ```
 
-*(Note: If no database URL is supplied, the platform executes using the built-in resilient local fallback).*
+*(Not: Veritabanı adresi girilmediğinde sistem dahili yerel veri yedekleme katmanında çalışmaya devam eder).*
 
-### 4. Generate Prisma Client
+### 4. Prisma İstemcisini Oluşturun
 ```bash
 npx prisma generate
 ```
 
-### 5. Run Local Development Server
+### 5. Geliştirme Sunucusunu Başlatın
 ```bash
 npm run dev
 ```
-Navigate to [http://localhost:3000](http://localhost:3000) (or the active port reported in terminal).
+Tarayıcınızdan [http://localhost:3000](http://localhost:3000) adresini ziyaret edin.
 
-### 6. Production Build
+### 6. Canlı Sürüm Derlemesi (Production Build)
 ```bash
 npm run build
 npm run start
@@ -284,36 +284,36 @@ npm run start
 
 ---
 
-## Available Test Coupons
+## Aktif Test Kuponları
 
-| Coupon Code | Value | Usage Terms |
+| Kupon Kodu | İndirim Değeri | Kullanım Şartı |
 |---|---|---|
-| **`TATLI10`** | 10% Discount | Valid across all catalog items |
-| **`TATLI20`** | 20% Discount | Requires minimum cart total of 1,000 TRY |
-| **`KARGO`** | Free Delivery | Waives the standard 49.90 TRY shipping fee |
+| **`TATLI10`** | %10 İndirim | Tüm katalog ürünlerinde geçerlidir |
+| **`TATLI20`** | %20 İndirim | Minimum 1.000 TL sepet tutarında geçerlidir |
+| **`KARGO`** | Ücretsiz Kargo | Standart 49,90 TL kargo ücretini sıfırlar |
 
 ---
 
-## Author & Engineering Contact
+## Geliştirici & İletişim
 
 <div align="center">
 
 ### **Hatice Tatlı**
-**Computer Engineer & Full-Stack Software Developer**
+**Bilgisayar Mühendisi & Full-Stack Yazılım Geliştirici**
 
 [![GitHub](https://img.shields.io/badge/GitHub-haticetatli-181717?style=for-the-badge&logo=github)](https://github.com/haticetatli)
 [![Email](https://img.shields.io/badge/Email-htatli158%40gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:htatli158@gmail.com)
 
-*Passionate about building modern, scalable, and resilient web architectures with clean TypeScript and React/Next.js ecosystem.*
+*Next.js, React ve TypeScript ekosisteminde ölçeklenebilir, modern ve temiz mimarili web sistemleri geliştirme odağına sahip bilgisayar mühendisi.*
 
 </div>
 
-- **GitHub Profile:** [https://github.com/haticetatli](https://github.com/haticetatli)
-- **Direct Engineering Email:** [htatli158@gmail.com](mailto:htatli158@gmail.com)
-- **Primary Specialization:** Next.js, React, TypeScript, Node.js, Full-Stack Web Development, Clean Architecture.
+- **GitHub Profili:** [https://github.com/haticetatli](https://github.com/haticetatli)
+- **Doğrudan İletişim E-Postası:** [htatli158@gmail.com](mailto:htatli158@gmail.com)
+- **Temel Uzmanlık Alanları:** Next.js, React, TypeScript, Node.js, Full-Stack Web Geliştirme, Temiz Mimari.
 
 ---
 
-## License
+## Lisans
 
-This project is licensed under the [MIT License](LICENSE).
+Bu proje [MIT Lisansı](LICENSE) kapsamında lisanslanmıştır.
