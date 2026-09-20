@@ -1,17 +1,18 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
   images: {
-    domains: [
-      'www.apple.com',
-      'productimages.hepsiburada.net', // ← eklendi
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**",
+      },
+      {
+        protocol: "http",
+        hostname: "**",
+      },
     ],
   },
 };
 
 export default nextConfig;
-
-
-
-
-
-

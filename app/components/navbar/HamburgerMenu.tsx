@@ -118,7 +118,7 @@ const HamburgerMenu = () => {
           {/* Hızlı İşlemler */}
           <div className="space-y-1 pt-3 border-t border-gray-100">
             <p className="text-[11px] font-bold uppercase tracking-wider text-gray-400 px-2 mb-2">
-              Hesap & İşlemler
+              Hesap & Alışveriş
             </p>
             <Link
               href="/cart"
@@ -137,6 +137,33 @@ const HamburgerMenu = () => {
             </Link>
 
             <Link
+              href="/favorites"
+              onClick={() => setIsOpen(false)}
+              className="flex items-center gap-2 px-3 py-2 text-xs font-semibold text-gray-700 hover:text-pink-600 hover:bg-pink-50 rounded-xl transition"
+            >
+              <span className="text-pink-600">❤️</span>
+              <span>Favorilerim</span>
+            </Link>
+
+            <Link
+              href="/deals"
+              onClick={() => setIsOpen(false)}
+              className="flex items-center gap-2 px-3 py-2 text-xs font-semibold text-gray-700 hover:text-pink-600 hover:bg-pink-50 rounded-xl transition"
+            >
+              <span>🔥</span>
+              <span>Kampanyalar & Kuponlar</span>
+            </Link>
+
+            <Link
+              href="/tracking"
+              onClick={() => setIsOpen(false)}
+              className="flex items-center gap-2 px-3 py-2 text-xs font-semibold text-gray-700 hover:text-pink-600 hover:bg-pink-50 rounded-xl transition"
+            >
+              <span>📦</span>
+              <span>Kargo & Sipariş Takibi</span>
+            </Link>
+
+            <Link
               href="/login"
               onClick={() => setIsOpen(false)}
               className="flex items-center gap-2 px-3 py-2 text-xs font-semibold text-gray-700 hover:text-pink-600 hover:bg-pink-50 rounded-xl transition"
@@ -152,6 +179,41 @@ const HamburgerMenu = () => {
             >
               <MdOutlineDashboard size={18} className="text-pink-600" />
               <span>Yönetici Paneli</span>
+            </Link>
+          </div>
+
+          {/* Kurumsal & Destek */}
+          <div className="space-y-1 pt-3 border-t border-gray-100">
+            <p className="text-[11px] font-bold uppercase tracking-wider text-gray-400 px-2 mb-2">
+              Bilgi & Destek
+            </p>
+            <Link
+              href="/about"
+              onClick={() => setIsOpen(false)}
+              className="block px-3 py-1.5 text-xs text-gray-600 hover:text-pink-600 hover:bg-pink-50 rounded-xl transition"
+            >
+              Hakkımızda
+            </Link>
+            <Link
+              href="/contact"
+              onClick={() => setIsOpen(false)}
+              className="block px-3 py-1.5 text-xs text-gray-600 hover:text-pink-600 hover:bg-pink-50 rounded-xl transition"
+            >
+              İletişim & Destek
+            </Link>
+            <Link
+              href="/returns"
+              onClick={() => setIsOpen(false)}
+              className="block px-3 py-1.5 text-xs text-gray-600 hover:text-pink-600 hover:bg-pink-50 rounded-xl transition"
+            >
+              Kolay İade & Değişim
+            </Link>
+            <Link
+              href="/faq"
+              onClick={() => setIsOpen(false)}
+              className="block px-3 py-1.5 text-xs text-gray-600 hover:text-pink-600 hover:bg-pink-50 rounded-xl transition"
+            >
+              Sıkça Sorulan Sorular
             </Link>
           </div>
         </div>

@@ -16,9 +16,23 @@ export function filterProducts(
       filters.category !== "Tümü" &&
       filters.category.trim() !== ""
     ) {
-      const prodCat = (product.category || "").toLowerCase();
-      const filterCat = filters.category.toLowerCase();
-      if (!prodCat.includes(filterCat) && !filterCat.includes(prodCat)) {
+      const prodCat = (product.category || "").toLowerCase().trim();
+      const filterCat = filters.category.toLowerCase().trim();
+
+      const normalize = (cat: string) => {
+        if (cat === "telefon" || cat === "phone") return "telefon";
+        if (cat === "laptop" || cat === "bilgisayar" || cat === "computer") return "laptop";
+        if (cat === "saat" || cat === "watch") return "saat";
+        if (cat === "aksesuar" || cat === "accessory" || cat === "accessories") return "aksesuar";
+        if (cat === "ayakkabı" || cat === "ayakkabi" || cat === "shoes" || cat === "shoe") return "ayakkabı";
+        if (cat === "çanta" || cat === "canta" || cat === "bag" || cat === "bags") return "çanta";
+        return cat;
+      };
+
+      const normProd = normalize(prodCat);
+      const normFilter = normalize(filterCat);
+
+      if (normProd !== normFilter && !prodCat.includes(filterCat) && !filterCat.includes(prodCat)) {
         return false;
       }
     }

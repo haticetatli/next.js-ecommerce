@@ -55,6 +55,22 @@ const User: React.FC<UserProps> = ({ currentUser }) => {
                 Yönetici Paneli
               </Link>
 
+              <Link
+                href="/favorites"
+                onClick={() => setOpenMenu(false)}
+                className="block text-gray-700 hover:bg-pink-50 hover:text-pink-600 px-3 py-2 rounded-xl transition-colors font-medium"
+              >
+                Favorilerim
+              </Link>
+
+              <Link
+                href="/tracking"
+                onClick={() => setOpenMenu(false)}
+                className="block text-gray-700 hover:bg-pink-50 hover:text-pink-600 px-3 py-2 rounded-xl transition-colors font-medium"
+              >
+                Kargo & Sipariş Takip
+              </Link>
+
               <button
                 onClick={handleLogout}
                 className="w-full text-left text-red-600 hover:bg-red-50 px-3 py-2 rounded-xl transition-colors font-medium cursor-pointer"
@@ -78,6 +94,22 @@ const User: React.FC<UserProps> = ({ currentUser }) => {
                 className="block text-gray-700 hover:bg-pink-50 hover:text-pink-600 px-3 py-2 rounded-xl transition-colors font-medium"
               >
                 Kayıt Ol
+              </Link>
+
+              <Link
+                href="/favorites"
+                onClick={() => setOpenMenu(false)}
+                className="block text-gray-700 hover:bg-pink-50 hover:text-pink-600 px-3 py-2 rounded-xl transition-colors font-medium"
+              >
+                Favorilerim
+              </Link>
+
+              <Link
+                href="/tracking"
+                onClick={() => setOpenMenu(false)}
+                className="block text-gray-700 hover:bg-pink-50 hover:text-pink-600 px-3 py-2 rounded-xl transition-colors font-medium"
+              >
+                Kargo & Sipariş Takip
               </Link>
 
               <Link

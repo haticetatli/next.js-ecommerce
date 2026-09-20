@@ -45,7 +45,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
   // Favoriler kontrolü
   useEffect(() => {
     try {
-      const favs = JSON.parse(localStorage.getItem("favorites") || "[]");
+      const favs = JSON.parse(localStorage.getItem("tatli_wishlist") || "[]");
       if (Array.isArray(favs)) {
         setIsFavorite(favs.includes(String(product.id)));
       }
@@ -58,7 +58,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
     e.stopPropagation();
     try {
       const favs: string[] = JSON.parse(
-        localStorage.getItem("favorites") || "[]"
+        localStorage.getItem("tatli_wishlist") || "[]"
       );
       const strId = String(product.id);
       let updatedFavs: string[];
@@ -72,7 +72,8 @@ const ProductCard = ({ product }: ProductCardProps) => {
         setIsFavorite(true);
         toast("Favorilere eklendi!", { icon: "❤️" });
       }
-      localStorage.setItem("favorites", JSON.stringify(updatedFavs));
+      localStorage.setItem("tatli_wishlist", JSON.stringify(updatedFavs));
+      window.dispatchEvent(new Event("wishlist_updated"));
     } catch (err) {
       console.error(err);
     }

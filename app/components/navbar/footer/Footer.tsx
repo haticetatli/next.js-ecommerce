@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
 
 const Footer = () => {
@@ -10,10 +11,26 @@ const Footer = () => {
           <div className="space-y-4">
             <h3 className="text-base font-bold text-gray-900">Şirketimiz</h3>
             <ul className="space-y-2 text-sm text-gray-600">
-              <li><a href="#" className="hover:text-pink-600 transition-colors">Hakkımızda</a></li>
-              <li><a href="#" className="hover:text-pink-600 transition-colors">Kariyer</a></li>
-              <li><a href="#" className="hover:text-pink-600 transition-colors">Basın & Medya</a></li>
-              <li><a href="#" className="hover:text-pink-600 transition-colors">İletişim</a></li>
+              <li>
+                <Link href="/about" className="hover:text-pink-600 transition-colors">
+                  Hakkımızda
+                </Link>
+              </li>
+              <li>
+                <Link href="/about" className="hover:text-pink-600 transition-colors">
+                  Kariyer
+                </Link>
+              </li>
+              <li>
+                <Link href="/deals" className="hover:text-pink-600 transition-colors">
+                  Kampanyalar & Fırsatlar
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="hover:text-pink-600 transition-colors">
+                  İletişim
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -21,10 +38,36 @@ const Footer = () => {
           <div className="space-y-4">
             <h3 className="text-base font-bold text-gray-900">Popüler Kategoriler</h3>
             <ul className="space-y-2 text-sm text-gray-600">
-              <li><a href="#" className="hover:text-pink-600 transition-colors">iPhone & Telefonlar</a></li>
-              <li><a href="#" className="hover:text-pink-600 transition-colors">MacBook & Bilgisayarlar</a></li>
-              <li><a href="#" className="hover:text-pink-600 transition-colors">Akıllı Saatler</a></li>
-              <li><a href="#" className="hover:text-pink-600 transition-colors">Orijinal Aksesuarlar</a></li>
+              <li>
+                <Link href="/?category=Telefon" className="hover:text-pink-600 transition-colors">
+                  iPhone & Telefonlar
+                </Link>
+              </li>
+              <li>
+                <Link href="/?category=Laptop" className="hover:text-pink-600 transition-colors">
+                  MacBook & Bilgisayarlar
+                </Link>
+              </li>
+              <li>
+                <Link href="/?category=Saat" className="hover:text-pink-600 transition-colors">
+                  Akıllı Saatler
+                </Link>
+              </li>
+              <li>
+                <Link href="/?category=Aksesuar" className="hover:text-pink-600 transition-colors">
+                  Orijinal Aksesuarlar
+                </Link>
+              </li>
+              <li>
+                <Link href="/?category=Ayakkabı" className="hover:text-pink-600 transition-colors">
+                  Spor & Ayakkabı
+                </Link>
+              </li>
+              <li>
+                <Link href="/?category=Çanta" className="hover:text-pink-600 transition-colors">
+                  Sırt & Laptop Çantaları
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -32,10 +75,31 @@ const Footer = () => {
           <div className="space-y-4">
             <h3 className="text-base font-bold text-gray-900">Müşteri Hizmetleri</h3>
             <ul className="space-y-2 text-sm text-gray-600">
-              <li><a href="#" className="hover:text-pink-600 transition-colors">Canlı Destek</a></li>
-              <li><a href="#" className="hover:text-pink-600 transition-colors">Kargo & Teslimat Takibi</a></li>
-              <li><a href="#" className="hover:text-pink-600 transition-colors">Kolay İade & Değişim</a></li>
-              <li><a href="#" className="hover:text-pink-600 transition-colors">Garanti Koşulları</a></li>
+              <li>
+                <Link href="/contact" className="hover:text-pink-600 transition-colors">
+                  Canlı Destek
+                </Link>
+              </li>
+              <li>
+                <Link href="/tracking" className="hover:text-pink-600 transition-colors">
+                  Kargo & Teslimat Takibi
+                </Link>
+              </li>
+              <li>
+                <Link href="/returns" className="hover:text-pink-600 transition-colors">
+                  Kolay İade & Değişim
+                </Link>
+              </li>
+              <li>
+                <Link href="/faq" className="hover:text-pink-600 transition-colors">
+                  Sıkça Sorulan Sorular & Garanti
+                </Link>
+              </li>
+              <li>
+                <Link href="/favorites" className="hover:text-pink-600 transition-colors">
+                  Favorilerim
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -49,7 +113,10 @@ const Footer = () => {
                 placeholder="E-posta adresiniz"
                 className="flex-1 bg-white border border-gray-200 rounded-xl px-3 py-2 text-sm text-gray-800 outline-none focus:border-pink-500 focus:ring-2 focus:ring-pink-100 transition-all"
               />
-              <button className="bg-pink-600 hover:bg-pink-700 text-white text-xs font-semibold px-4 py-2 rounded-xl transition-colors shadow-sm cursor-pointer">
+              <button
+                type="button"
+                className="bg-pink-600 hover:bg-pink-700 text-white text-xs font-semibold px-4 py-2 rounded-xl transition-colors shadow-sm cursor-pointer"
+              >
                 Abone Ol
               </button>
             </div>
@@ -62,19 +129,25 @@ const Footer = () => {
             <span className="text-sm font-medium text-gray-600">Bizi takip edin:</span>
             <div className="flex gap-2.5">
               <a
-                href="#"
+                href="https://facebook.com"
+                target="_blank"
+                rel="noreferrer"
                 className="w-8 h-8 bg-pink-600 hover:bg-pink-700 text-white rounded-full flex items-center justify-center transition-transform hover:scale-105"
               >
                 <FaFacebookF size={14} />
               </a>
               <a
-                href="#"
+                href="https://twitter.com"
+                target="_blank"
+                rel="noreferrer"
                 className="w-8 h-8 bg-pink-600 hover:bg-pink-700 text-white rounded-full flex items-center justify-center transition-transform hover:scale-105"
               >
                 <FaTwitter size={14} />
               </a>
               <a
-                href="#"
+                href="https://instagram.com"
+                target="_blank"
+                rel="noreferrer"
                 className="w-8 h-8 bg-pink-600 hover:bg-pink-700 text-white rounded-full flex items-center justify-center transition-transform hover:scale-105"
               >
                 <FaInstagram size={14} />
@@ -101,9 +174,14 @@ const Footer = () => {
         {/* Telif Hakkı */}
         <div className="py-5 border-t border-pink-100 text-center">
           <p className="text-xs text-gray-500">
-            © 2025 Tatli.com | Tüm hakları saklıdır. ·{" "}
-            <a href="#" className="hover:text-pink-600 transition-colors">Gizlilik Politikası</a> ·{" "}
-            <a href="#" className="hover:text-pink-600 transition-colors">Kullanım Şartları</a>
+            © 2026 Tatli.com | Tüm hakları saklıdır. ·{" "}
+            <Link href="/privacy" className="hover:text-pink-600 transition-colors">
+              Gizlilik Politikası
+            </Link>{" "}
+            ·{" "}
+            <Link href="/terms" className="hover:text-pink-600 transition-colors">
+              Kullanım Şartları
+            </Link>
           </p>
         </div>
       </div>
