@@ -1,6 +1,13 @@
 {
-  "name": "next",
-  "version": "0.1.0",
+  "name": "tatli-ecommerce",
+  "version": "1.0.0",
+  "description": "Modern Full-Stack E-Commerce Platform built with Next.js 15, React 19, TypeScript, and Tailwind CSS v4",
+  "author": "Hatice Tatlı <20227170018@ogr.oku.edu.tr>",
+  "homepage": "https://github.com/haticetatli/next.js-ecommerce#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/haticetatli/next.js-ecommerce.git"
+  },
   "private": true,
   "scripts": {
     "dev": "next dev",
