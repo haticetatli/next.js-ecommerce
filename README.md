@@ -296,11 +296,20 @@ npm run start
 
 ## Author & Engineering Contact
 
+<div align="center">
+
 ### **Hatice Tatlı**
 **Computer Engineer & Full-Stack Software Developer**
 
+[![GitHub](https://img.shields.io/badge/GitHub-haticetatli-181717?style=for-the-badge&logo=github)](https://github.com/haticetatli)
+[![Email](https://img.shields.io/badge/Email-htatli158%40gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:htatli158@gmail.com)
+
+*Passionate about building modern, scalable, and resilient web architectures with clean TypeScript and React/Next.js ecosystem.*
+
+</div>
+
 - **GitHub Profile:** [https://github.com/haticetatli](https://github.com/haticetatli)
-- **Academic / Engineering Email:** `20227170018@ogr.oku.edu.tr`
+- **Direct Engineering Email:** [htatli158@gmail.com](mailto:htatli158@gmail.com)
 - **Primary Specialization:** Next.js, React, TypeScript, Node.js, Full-Stack Web Development, Clean Architecture.
 
 ---
