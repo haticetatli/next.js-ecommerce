@@ -1,34 +1,48 @@
-'use client';
+"use client";
 
-import { usePathname } from 'next/navigation';
-import AdminSidebarItem from './AdminSiderbarItem';
-import { MdDashboard, MdPeople, MdSettings, MdInventory } from 'react-icons/md';
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import {
+  MdDashboard,
+  MdInventory,
+  MdAddBox,
+  MdShoppingCart,
+  MdStorefront,
+} from "react-icons/md";
 
-const adminPanel = [
-  { name: 'Dashboard', icon: MdDashboard, url: '/admin' },
-  { name: 'Kullanıcılar', icon: MdPeople, url: '/admin/users' },
-  { name: 'Ayarlar', icon: MdSettings, url: '/admin/settings' },
-  { name: 'Ürünler', icon: MdInventory, url: '/admin/products' },
-  { name: 'Yeni Ürün', icon: MdInventory, url: '/admin/products/new' },
+const navItems = [
+  { name: "Genel Bakış", icon: MdDashboard, url: "/admin" },
+  { name: "Ürün Yönetimi", icon: MdInventory, url: "/admin/products" },
+  { name: "Yeni Ürün Ekle", icon: MdAddBox, url: "/admin/products/new" },
+  { name: "Siparişler (Demo)", icon: MdShoppingCart, url: "/cart" },
+  { name: "Mağazaya Dön", icon: MdStorefront, url: "/" },
 ];
 
 const AdminSidebar = () => {
   const pathname = usePathname();
 
   return (
-    <div className="h-full bg-gray-800 p-4 text-white">
-      <div className="flex flex-col gap-2">
-        {adminPanel.map((admin, i) => (
-          <AdminSidebarItem
-            key={i}
-            selected={pathname === admin.url}
-            name={admin.name}
-            icon={admin.icon}
-            url={admin.url}
-          />
-        ))}
-      </div>
-    </div>
+    <nav className="p-4 space-y-1">
+      {navItems.map((item, idx) => {
+        const Icon = item.icon;
+        const isActive = pathname === item.url;
+
+        return (
+          <Link
+            key={idx}
+            href={item.url}
+            className={`flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs md:text-sm font-semibold transition-all ${
+              isActive
+                ? "bg-pink-600 text-white shadow-md shadow-pink-900/30 font-bold"
+                : "text-slate-300 hover:text-white hover:bg-slate-800/80"
+            }`}
+          >
+            <Icon size={18} className={isActive ? "text-white" : "text-slate-400"} />
+            <span>{item.name}</span>
+          </Link>
+        );
+      })}
+    </nav>
   );
 };
 

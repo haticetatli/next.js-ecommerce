@@ -1,7 +1,7 @@
-const textClip = (text?: string): string => {
+const textClip = (text?: string, maxLength: number = 20): string => {
   if (!text) return "";
-  if (text.length < 20) return text;
-  return text.substring(0, 15) + "...";
+  if (text.length <= maxLength) return text;
+  return text.substring(0, maxLength).trim() + "...";
 };
 
 export default textClip;

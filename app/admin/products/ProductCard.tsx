@@ -1,14 +1,16 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
+import { Product } from "@/types";
 
-export default function ProductCard({ product }: any) {
+export default function ProductCard({ product }: { product: Product }) {
   const [isEditOpen, setIsEditOpen] = useState(false);
 
   // Edit için state’ler
   const [name, setName] = useState(product.name);
   const [price, setPrice] = useState(product.price);
-  const [brand, setBrand] = useState(product.brand);
+  const [brand, setBrand] = useState(product.brand || "");
 
   const handleDelete = async () => {
     if (!confirm("Bu ürünü silmek istediğinize emin misiniz?")) return;
@@ -41,18 +43,24 @@ export default function ProductCard({ product }: any) {
     window.location.reload();
   };
 
+  const imageSrc =
+    typeof product.image === "string" && product.image.startsWith("data:")
+      ? product.image
+      : typeof product.image === "string" && (product.image.startsWith("http") || product.image.startsWith("/"))
+      ? product.image
+      : "/placeholder.webp";
+
   return (
     <div className="border rounded-lg p-4 shadow bg-white flex flex-col justify-between">
       <div>
-        <img
-          src={
-            product.image?.startsWith("data:")
-              ? product.image
-              : `data:image/png;base64,${product.image}`
-          }
-          alt={product.name}
-          className="w-full h-48 object-contain rounded bg-gray-100"
-        />
+        <div className="w-full h-48 relative bg-gray-100 rounded overflow-hidden">
+          <Image
+            src={imageSrc}
+            alt={product.name}
+            fill
+            className="object-contain"
+          />
+        </div>
         <h2 className="mt-2 text-lg font-bold">{product.name}</h2>
         <p className="text-sm text-gray-500">{product.brand}</p>
         <p className="text-orange-700 font-semibold">{product.price} ₺</p>

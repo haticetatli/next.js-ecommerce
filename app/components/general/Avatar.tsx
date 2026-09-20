@@ -1,12 +1,24 @@
-import { RxAvatar } from "react-icons/rx"
+import Image from "next/image";
+import { RxAvatar } from "react-icons/rx";
 
 interface AvatarProps {
-    image?: string
-}
-const Avatar:React.FC<AvatarProps> =({image}) => {
-    if(image){<img src={image} alt="" />
-    return <div><RxAvatar size="25"/> </div>
-    }
+  image?: string | null;
 }
 
-export default Avatar
+const Avatar: React.FC<AvatarProps> = ({ image }) => {
+  if (image) {
+    return (
+      <div className="relative w-7 h-7 rounded-full overflow-hidden">
+        <Image src={image} alt="Avatar" fill className="object-cover" />
+      </div>
+    );
+  }
+
+  return (
+    <div className="text-gray-500">
+      <RxAvatar size={24} />
+    </div>
+  );
+};
+
+export default Avatar;

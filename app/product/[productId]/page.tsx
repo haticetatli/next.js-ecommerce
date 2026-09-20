@@ -1,6 +1,7 @@
 import DetailClient from "@/app/components/detail/DetailClient";
 import prisma from "@/libs/prismadb";
 import { products as fallbackProducts } from "@/utils/Products";
+import { Product } from "@/types";
 
 interface DetailPageProps {
   params: Promise<{ productId: string }>;
@@ -9,10 +10,10 @@ interface DetailPageProps {
 export default async function DetailPage({ params }: DetailPageProps) {
   const { productId } = await params;
 
-  let product: any = null;
+  let product: Product | null = null;
 
   try {
-    product = await prisma.product.findUnique({
+    const dbProduct = await prisma.product.findUnique({
       where: { id: productId },
       include: {
         reviews: {
@@ -25,12 +26,22 @@ export default async function DetailPage({ params }: DetailPageProps) {
         },
       },
     });
+
+    if (dbProduct) {
+      product = {
+        ...dbProduct,
+        reviews: dbProduct.reviews.map((r) => ({
+          ...r,
+          createdDate: r.createdDate.toISOString(),
+        })),
+      };
+    }
   } catch (err) {
     console.warn("MongoDB üzerinden ürün sorgulanamadı, fallback aranıyor:", err);
   }
 
   if (!product) {
-    product = fallbackProducts.find((p) => String(p.id) === String(productId));
+    product = fallbackProducts.find((p) => String(p.id) === String(productId)) || null;
   }
 
   if (!product) {

@@ -1,31 +1,21 @@
 "use client";
 
-import { User as PrismaUser } from "@prisma/client";
+import { SafeUser } from "@/types";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { AiOutlineUser } from "react-icons/ai";
 import { signOut } from "next-auth/react";
+import Link from "next/link";
 
 interface UserProps {
-  currentUser?: PrismaUser | null;
+  currentUser?: SafeUser | null;
 }
 
 const User: React.FC<UserProps> = ({ currentUser }) => {
   const [openMenu, setOpenMenu] = useState(false);
-  const router = useRouter();
 
-  const menuFunc = (type: string) => {
+  const handleLogout = () => {
     setOpenMenu(false);
-
-    if (type === "logout") {
-      signOut({ callbackUrl: "/login" });
-    } else if (type === "register") {
-      router.push("/register");
-    } else if (type === "login") {
-      router.push("/login");
-    } else if (type === "admin") {
-      router.push("/admin");
-    }
+    signOut({ callbackUrl: "/login" });
   };
 
   return (
@@ -41,40 +31,62 @@ const User: React.FC<UserProps> = ({ currentUser }) => {
       </div>
 
       {openMenu && (
-        <div className="absolute w-[180px] top-12 right-0 bg-white border border-gray-100 shadow-xl p-2 rounded-2xl space-y-1 z-50 text-sm">
+        <div className="absolute w-[200px] top-12 right-0 bg-white border border-gray-100 shadow-xl p-2 rounded-2xl space-y-1 z-50 text-xs">
           {currentUser ? (
             <>
-              <div className="px-3 py-2 border-b border-gray-100">
-                <p className="font-semibold text-gray-900 truncate">{currentUser.name}</p>
-                <p className="text-xs text-gray-400 truncate">{currentUser.email}</p>
+              <div className="px-3 py-2.5 border-b border-gray-100">
+                <p className="font-bold text-gray-900 truncate">{currentUser.name}</p>
+                <p className="text-[11px] text-gray-400 truncate">{currentUser.email}</p>
               </div>
-              <div
-                onClick={() => menuFunc("admin")}
-                className="text-gray-700 cursor-pointer hover:bg-pink-50 hover:text-pink-600 px-3 py-2 rounded-xl transition-colors font-medium"
+
+              <Link
+                href="/profile"
+                onClick={() => setOpenMenu(false)}
+                className="block text-gray-700 hover:bg-pink-50 hover:text-pink-600 px-3 py-2 rounded-xl transition-colors font-medium"
+              >
+                Siparişlerim & Profil
+              </Link>
+
+              <Link
+                href="/admin"
+                onClick={() => setOpenMenu(false)}
+                className="block text-gray-700 hover:bg-pink-50 hover:text-pink-600 px-3 py-2 rounded-xl transition-colors font-medium"
               >
                 Yönetici Paneli
-              </div>
-              <div
-                onClick={() => menuFunc("logout")}
-                className="text-red-600 cursor-pointer hover:bg-red-50 px-3 py-2 rounded-xl transition-colors font-medium"
+              </Link>
+
+              <button
+                onClick={handleLogout}
+                className="w-full text-left text-red-600 hover:bg-red-50 px-3 py-2 rounded-xl transition-colors font-medium cursor-pointer"
               >
                 Çıkış Yap
-              </div>
+              </button>
             </>
           ) : (
             <>
-              <div
-                onClick={() => menuFunc("login")}
-                className="text-gray-700 cursor-pointer hover:bg-pink-50 hover:text-pink-600 px-3 py-2 rounded-xl transition-colors font-medium"
+              <Link
+                href="/login"
+                onClick={() => setOpenMenu(false)}
+                className="block text-gray-700 hover:bg-pink-50 hover:text-pink-600 px-3 py-2 rounded-xl transition-colors font-medium"
               >
                 Giriş Yap
-              </div>
-              <div
-                onClick={() => menuFunc("register")}
-                className="text-gray-700 cursor-pointer hover:bg-pink-50 hover:text-pink-600 px-3 py-2 rounded-xl transition-colors font-medium"
+              </Link>
+
+              <Link
+                href="/register"
+                onClick={() => setOpenMenu(false)}
+                className="block text-gray-700 hover:bg-pink-50 hover:text-pink-600 px-3 py-2 rounded-xl transition-colors font-medium"
               >
                 Kayıt Ol
-              </div>
+              </Link>
+
+              <Link
+                href="/profile"
+                onClick={() => setOpenMenu(false)}
+                className="block text-gray-700 hover:bg-pink-50 hover:text-pink-600 px-3 py-2 rounded-xl transition-colors font-medium border-t border-gray-100 mt-1 pt-2"
+              >
+                Demo Siparişler
+              </Link>
             </>
           )}
         </div>

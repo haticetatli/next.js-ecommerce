@@ -1,14 +1,36 @@
-'use client';
-import React from 'react';
+"use client";
+import React from "react";
 
-const Counter: React.FC<CounterProps> = ({ cardProduct, increaseFunc, decreaseFunc }) => {
+interface CounterProps {
+  cardProduct: { quantity: number };
+  increaseFunc: () => void;
+  decreaseFunc: () => void;
+}
 
-    const buttonStyle = "w-8 h-8 border flex items-center justify-center text-lg rounded-md"
+const Counter: React.FC<CounterProps> = ({
+  cardProduct,
+  increaseFunc,
+  decreaseFunc,
+}) => {
   return (
-    <div className="flex items-center gap-2">
-      <div className={buttonStyle} onClick={decreaseFunc} className ="cursor-pointer px-2 py-1 bg-gray-200 rounded">-</div>
-      <div className='text-lg md:text-xl'>{cardProduct.quantity}</div>
-      <div className={buttonStyle} onClick={increaseFunc} className = "cursor-pointer px-2 py-1 bg-gray-200 rounded">+</div>
+    <div className="flex items-center border border-gray-200 rounded-full bg-gray-50/70 p-1">
+      <button
+        type="button"
+        onClick={decreaseFunc}
+        className="w-7 h-7 rounded-full bg-white shadow-sm flex items-center justify-center text-gray-700 hover:text-pink-600 font-bold transition cursor-pointer"
+      >
+        -
+      </button>
+      <span className="w-8 text-center text-xs font-bold text-gray-800">
+        {cardProduct.quantity}
+      </span>
+      <button
+        type="button"
+        onClick={increaseFunc}
+        className="w-7 h-7 rounded-full bg-white shadow-sm flex items-center justify-center text-gray-700 hover:text-pink-600 font-bold transition cursor-pointer"
+      >
+        +
+      </button>
     </div>
   );
 };
