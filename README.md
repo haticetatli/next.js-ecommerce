@@ -167,8 +167,8 @@ npm run test:watch
 
 ### 1. Depoyu Klonlayın
 ```bash
-git clone https://github.com/haticetatli/<repo-adi>.git
-cd <repo-adi>
+git clone https://github.com/haticetatli/next.js-ecommerce.git
+cd next.js-ecommerce
 ```
 
 ### 2. Bağımlılıkları Yükleyin
