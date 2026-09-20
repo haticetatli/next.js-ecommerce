@@ -3,13 +3,13 @@
 import { useRouter, useSearchParams } from "next/navigation";
 
 const categoryList = [
-  { name: "Tümü", icon: "✨" },
-  { name: "Telefon", icon: "📱" },
-  { name: "Laptop", icon: "💻" },
-  { name: "Saat", icon: "⌚" },
-  { name: "Aksesuar", icon: "🎧" },
-  { name: "Ayakkabı", icon: "👟" },
-  { name: "Çanta", icon: "👜" },
+  { name: "Tümü" },
+  { name: "Telefon" },
+  { name: "Laptop" },
+  { name: "Saat" },
+  { name: "Aksesuar" },
+  { name: "Ayakkabı" },
+  { name: "Çanta" },
 ];
 
 const Category = () => {
@@ -39,13 +39,12 @@ const Category = () => {
             <button
               key={index}
               onClick={() => handleSelect(cat.name)}
-              className={`px-4 py-2 rounded-full text-xs md:text-sm font-semibold transition-all duration-200 flex items-center gap-2 whitespace-nowrap shadow-sm cursor-pointer ${
+              className={`px-4 py-2 rounded-full text-xs md:text-sm font-semibold transition-all duration-200 flex items-center justify-center whitespace-nowrap shadow-sm cursor-pointer ${
                 isSelected
                   ? "bg-pink-600 text-white shadow-pink-200 ring-2 ring-pink-500/20"
                   : "bg-white border border-gray-200 text-gray-700 hover:border-pink-300 hover:text-pink-600 hover:bg-pink-50/40"
               }`}
             >
-              <span>{cat.icon}</span>
               <span>{cat.name}</span>
             </button>
           );

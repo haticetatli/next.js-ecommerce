@@ -101,15 +101,15 @@ export default function AboutPage() {
             <h3 className="text-lg font-bold text-gray-900">Misyon & Vizyon</h3>
             <ul className="space-y-3 text-xs md:text-sm text-gray-600">
               <li className="flex items-start gap-2.5">
-                <span className="text-pink-600 font-bold">✓</span>
+                <MdCheckCircle size={18} className="text-pink-600 flex-shrink-0 mt-0.5" />
                 <span><strong>Sıfır Mağduriyet:</strong> 14 gün koşulsuz kolay iade ve birebir değişim imkanı.</span>
               </li>
               <li className="flex items-start gap-2.5">
-                <span className="text-pink-600 font-bold">✓</span>
+                <MdCheckCircle size={18} className="text-pink-600 flex-shrink-0 mt-0.5" />
                 <span><strong>Yüksek Performans:</strong> Modern web mimarisiyle saniyeler içinde tamamlanan sipariş deneyimi.</span>
               </li>
               <li className="flex items-start gap-2.5">
-                <span className="text-pink-600 font-bold">✓</span>
+                <MdCheckCircle size={18} className="text-pink-600 flex-shrink-0 mt-0.5" />
                 <span><strong>Dürüst Fiyatlandırma:</strong> Gizli kargo masrafı veya sürpriz ücret olmadan net alışveriş.</span>
               </li>
             </ul>

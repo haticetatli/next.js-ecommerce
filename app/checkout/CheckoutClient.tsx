@@ -143,7 +143,7 @@ const CheckoutClient = () => {
       removeCart();
       setIsProcessing(false);
 
-      toast.success("Siparişiniz başarıyla alındı! 🎉");
+      toast.success("Siparişiniz başarıyla alındı!");
       router.push(`/checkout/success?orderId=${orderId}`);
     }, 1200);
   };
@@ -318,7 +318,7 @@ const CheckoutClient = () => {
                 />
                 <div className="text-xs space-y-1 flex-1">
                   <div className="flex justify-between font-bold text-gray-900">
-                    <span>Hızlı Kargo ⚡</span>
+                    <span>Hızlı Kargo</span>
                     <span>+29,90 ₺</span>
                   </div>
                   <p className="text-gray-500">1-2 iş günü öncelikli teslimat</p>

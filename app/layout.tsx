@@ -4,7 +4,7 @@ import "./globals.css";
 import Footer from "./components/navbar/footer/Footer";
 import Navbar from "./components/navbar/Navbar";
 import CartProvider from "@/provider/CartProvider";
-import { Toaster } from "react-hot-toast"; // ✅ Eksik import eklendi
+import { Toaster } from "react-hot-toast";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,7 +21,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        {/* ✅ Toaster artık tanımlı */}
         <Toaster position="top-right" reverseOrder={false} />
 
         <CartProvider>

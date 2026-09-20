@@ -8,16 +8,19 @@ import {
   MdShoppingBag,
   MdOutlineDashboard,
   MdPersonOutline,
+  MdFavoriteBorder,
+  MdLocalOffer,
+  MdLocalShipping,
 } from "react-icons/md";
 import useCart from "@/hooks/useCart";
 
 const categories = [
-  { name: "Telefon", icon: "📱" },
-  { name: "Laptop", icon: "💻" },
-  { name: "Saat", icon: "⌚" },
-  { name: "Aksesuar", icon: "🎧" },
-  { name: "Ayakkabı", icon: "👟" },
-  { name: "Çanta", icon: "👜" },
+  { name: "Telefon" },
+  { name: "Laptop" },
+  { name: "Saat" },
+  { name: "Aksesuar" },
+  { name: "Ayakkabı" },
+  { name: "Çanta" },
 ];
 
 const HamburgerMenu = () => {
@@ -107,9 +110,8 @@ const HamburgerMenu = () => {
               <button
                 key={idx}
                 onClick={() => handleCategoryClick(cat.name)}
-                className="w-full flex items-center gap-2.5 px-3 py-2 text-xs font-semibold text-gray-700 hover:text-pink-600 hover:bg-pink-50 rounded-xl transition text-left"
+                className="w-full flex items-center px-3 py-2 text-xs font-semibold text-gray-700 hover:text-pink-600 hover:bg-pink-50 rounded-xl transition text-left"
               >
-                <span>{cat.icon}</span>
                 <span>{cat.name}</span>
               </button>
             ))}
@@ -141,7 +143,7 @@ const HamburgerMenu = () => {
               onClick={() => setIsOpen(false)}
               className="flex items-center gap-2 px-3 py-2 text-xs font-semibold text-gray-700 hover:text-pink-600 hover:bg-pink-50 rounded-xl transition"
             >
-              <span className="text-pink-600">❤️</span>
+              <MdFavoriteBorder size={18} className="text-pink-600" />
               <span>Favorilerim</span>
             </Link>
 
@@ -150,7 +152,7 @@ const HamburgerMenu = () => {
               onClick={() => setIsOpen(false)}
               className="flex items-center gap-2 px-3 py-2 text-xs font-semibold text-gray-700 hover:text-pink-600 hover:bg-pink-50 rounded-xl transition"
             >
-              <span>🔥</span>
+              <MdLocalOffer size={18} className="text-pink-600" />
               <span>Kampanyalar & Kuponlar</span>
             </Link>
 
@@ -159,7 +161,7 @@ const HamburgerMenu = () => {
               onClick={() => setIsOpen(false)}
               className="flex items-center gap-2 px-3 py-2 text-xs font-semibold text-gray-700 hover:text-pink-600 hover:bg-pink-50 rounded-xl transition"
             >
-              <span>📦</span>
+              <MdLocalShipping size={18} className="text-pink-600" />
               <span>Kargo & Sipariş Takibi</span>
             </Link>
 

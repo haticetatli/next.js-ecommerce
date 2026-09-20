@@ -292,9 +292,10 @@ export default function AdminProductsPage() {
               <h3 className="font-bold text-gray-900 text-base">Ürünü Düzenle</h3>
               <button
                 onClick={() => setEditingProduct(null)}
-                className="text-gray-400 hover:text-gray-600 text-lg cursor-pointer"
+                className="text-gray-400 hover:text-gray-600 p-1 rounded-lg hover:bg-gray-100 transition cursor-pointer"
+                aria-label="Kapat"
               >
-                ✕
+                <MdClose size={20} />
               </button>
             </div>
 

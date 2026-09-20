@@ -4,6 +4,7 @@ import {
   MdAutorenew,
   MdHelpOutline,
   MdArrowBack,
+  MdCheckCircle,
 } from "react-icons/md";
 
 export const metadata: Metadata = {
@@ -76,15 +77,15 @@ export default function ReturnsPage() {
           </h2>
           <ul className="space-y-3 text-xs md:text-sm text-gray-600">
             <li className="flex items-start gap-2">
-              <span className="text-emerald-600 font-bold">✓</span>
+              <MdCheckCircle size={18} className="text-emerald-600 flex-shrink-0 mt-0.5" />
               <span>Ürünün faturası, orijinal ambalajı ve koruyucu bantları zarar görmemiş olmalıdır.</span>
             </li>
             <li className="flex items-start gap-2">
-              <span className="text-emerald-600 font-bold">✓</span>
+              <MdCheckCircle size={18} className="text-emerald-600 flex-shrink-0 mt-0.5" />
               <span>Kutu içerisindeki kablo, adaptör, kullanım kılavuzu ve hediye ürünler eksiksiz gönderilmelidir.</span>
             </li>
             <li className="flex items-start gap-2">
-              <span className="text-emerald-600 font-bold">✓</span>
+              <MdCheckCircle size={18} className="text-emerald-600 flex-shrink-0 mt-0.5" />
               <span>Hijyen gereği kulak içi kulaklıklarda koruma bandı açılmamış olmalıdır.</span>
             </li>
           </ul>

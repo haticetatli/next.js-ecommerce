@@ -66,11 +66,11 @@ const ProductCard = ({ product }: ProductCardProps) => {
       if (favs.includes(strId)) {
         updatedFavs = favs.filter((id) => id !== strId);
         setIsFavorite(false);
-        toast("Favorilerden kaldırıldı", { icon: "💔" });
+        toast.success("Favorilerden kaldırıldı");
       } else {
         updatedFavs = [...favs, strId];
         setIsFavorite(true);
-        toast("Favorilere eklendi!", { icon: "❤️" });
+        toast.success("Favorilere eklendi!");
       }
       localStorage.setItem("tatli_wishlist", JSON.stringify(updatedFavs));
       window.dispatchEvent(new Event("wishlist_updated"));

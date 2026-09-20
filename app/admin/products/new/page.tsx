@@ -65,7 +65,7 @@ export default function NewProductPage() {
       });
 
       if (res.ok) {
-        toast.success("Ürün başarıyla eklendi! 🎉");
+        toast.success("Ürün başarıyla eklendi!");
         router.push("/admin/products");
         router.refresh();
       } else {

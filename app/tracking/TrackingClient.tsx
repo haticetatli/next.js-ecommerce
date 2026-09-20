@@ -149,8 +149,9 @@ export default function TrackingClient() {
                 </h3>
               </div>
               <div className="flex items-center gap-2">
-                <span className="px-3 py-1 bg-amber-50 text-amber-700 border border-amber-200 rounded-full text-xs font-bold">
-                  🚚 Dağıtımda
+                <span className="px-3 py-1 bg-amber-50 text-amber-700 border border-amber-200 rounded-full text-xs font-bold flex items-center">
+                  <span className="inline-block w-2 h-2 rounded-full bg-amber-500 mr-1.5" />
+                  Dağıtımda
                 </span>
                 <span className="text-xs text-gray-400">
                   Yurtiçi Kargo

@@ -102,11 +102,11 @@ const DetailClient = ({ product }: DetailClientProps) => {
       if (favs.includes(strId)) {
         updated = favs.filter((id) => id !== strId);
         setIsFavorite(false);
-        toast("Favorilerden kaldırıldı", { icon: "💔" });
+        toast.success("Favorilerden kaldırıldı");
       } else {
         updated = [...favs, strId];
         setIsFavorite(true);
-        toast("Favorilere eklendi!", { icon: "❤️" });
+        toast.success("Favorilere eklendi!");
       }
       localStorage.setItem("favorites", JSON.stringify(updated));
     } catch (err) {

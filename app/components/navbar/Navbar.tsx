@@ -24,10 +24,10 @@ const Navbar = async () => {
         <nav className="hidden xl:flex items-center gap-5 text-xs font-semibold text-gray-600">
           <Link
             href="/deals"
-            className="flex items-center gap-1 hover:text-pink-600 transition py-1"
+            className="flex items-center gap-1.5 hover:text-pink-600 transition py-1"
           >
-            <span>🔥</span>
-            <span>Kampanyalar</span>
+            <MdLocalShipping size={16} className="text-pink-600 hidden" />
+            <span className="font-semibold">Kampanyalar</span>
           </Link>
           <Link
             href="/tracking"

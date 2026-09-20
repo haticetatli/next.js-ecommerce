@@ -1,4 +1,4 @@
-# 🛍️ Tatli.com — Modern Full-Stack E-Commerce Platform
+# Tatli.com - Full-Stack E-Commerce Platform
 
 <div align="center">
 
@@ -13,98 +13,54 @@
 [![CI](https://img.shields.io/badge/CI-GitHub_Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white)](https://github.com/haticetatli/next.js-ecommerce/actions)
 
 <p align="center">
-  <strong>A high-performance, enterprise-grade, full-stack e-commerce application engineered with Next.js 15 App Router, React 19, TypeScript, and Tailwind CSS v4.</strong>
+  <strong>Production-ready e-commerce web application engineered with Next.js 15 App Router, React 19, TypeScript, and Tailwind CSS v4.</strong>
 </p>
 
 <p align="center">
-  <a href="#-key-features">Key Features</a> •
-  <a href="#-architecture--resilience">Architecture</a> •
-  <a href="#-tech-stack">Tech Stack</a> •
-  <a href="#-automated-testing">Unit Tests</a> •
-  <a href="#-getting-started">Getting Started</a> •
-  <a href="#-developer--author">Author</a>
+  <a href="#project-overview">Overview</a> •
+  <a href="#system-architecture">Architecture</a> •
+  <a href="#key-functional-modules">Features</a> •
+  <a href="#technology-stack-breakdown">Tech Stack</a> •
+  <a href="#automated-unit-testing">Tests</a> •
+  <a href="#local-installation--setup">Getting Started</a> •
+  <a href="#author--engineering-contact">Author</a>
 </p>
 
 </div>
 
 ---
 
-## 📖 Overview
+## Project Overview
 
-**Tatli.com** is a comprehensive, production-ready e-commerce platform designed and developed by **Hatice Tatlı**. Built from the ground up with **clean architecture**, **strict TypeScript**, **offline-resilient data fallbacks**, and **modern UI/UX principles**, it showcases enterprise full-stack development skills suitable for mission-critical web applications.
+Tatli.com is an enterprise-grade full-stack e-commerce web platform developed by **Hatice Tatlı**. Designed with clean architecture, strict TypeScript typing, offline-resilient data fallbacks, and modern UI/UX design patterns, the application showcases complete end-to-end web engineering capabilities.
 
-The platform features a **30-item curated multi-category catalog**, a **real-time URL-synchronized discovery engine**, a **tiered shipping progress calculator**, an **interactive coupon discount system**, a **complete multi-step checkout with printable receipts**, an **admin backoffice with live inventory management**, and an **interactive order tracking timeline**.
-
----
-
-## 🌟 Key Features
-
-### 🛍️ 1. Multi-Category Product Discovery (30 Curated Items)
-- **6 Diverse Categories:** Phones, Laptops, Smartwatches, Audio Accessories, Running Shoes, and Backpacks (5 high-resolution items per category).
-- **URL-Synchronized Filter State:** Real-time query parameters binding (`?category=...&search=...`) allowing sharable and bookmarkable search results.
-- **Multi-Criteria Sorting:** Sort dynamically by Price (Low to High / High to Low), Customer Rating, Name (A-Z), or Featured.
-- **Stock Status Filter:** Instant toggle for "In Stock Only" with zero-delay client filtering.
-- **Resilient Image Handling:** Universal image adapter supporting external HTTPS CDNs, relative assets, and Base64 fallbacks without layout shifts.
-
-### 🧺 2. Advanced Cart & Coupon Discount Engine
-- **Free Shipping Motivation Bar:** Live progress indicator towards the 500 ₺ free shipping threshold.
-- **Interactive Promo Codes:**
-  - `TATLI10`: 10% discount across the entire cart.
-  - `TATLI20`: 20% discount on orders exceeding 1.000 ₺.
-  - `KARGO`: 100% discount on shipping fees (49,90 ₺ savings).
-- **Hydration-Safe Storage:** Custom `useCart` hook with `isMounted` guards preventing SSR hydration mismatches and guaranteeing `localStorage` persistence.
-
-### 💳 3. End-to-End Multi-Step Checkout
-- **Delivery Address Validation:** Full client-side validation for recipient name, phone, city, district, and street address.
-- **Shipping Method Selection:** Choice between Standard Ground Shipping and Express 24h Courier (+49,90 ₺).
-- **Payment Simulation:** Realistic 3D Secure credit card form with test feedback.
-- **Printable Order Receipt (`/checkout/success`):** Auto-generated alphanumeric order tracking code (e.g., `#ORD-829143-TR`), estimated delivery dates, line-item cost breakdown, and one-click browser printing.
-
-### 🛠️ 4. Admin Backoffice Suite (`/admin`)
-- **Executive KPI Dashboard:** Real-time summary metric cards for Total Revenue, Total Orders, Active Catalog Items, and Registered Users.
-- **Inventory Control Table (`/admin/products`):** Instant search, pagination, in-place editing modal, stock status toggle switch, and delete confirmations.
-- **Product Creation Wizard (`/admin/products/new`):** Clean form with live image preview and category assignments.
-
-### 📦 5. Real-Time Order Tracking (`/tracking`)
-- **Interactive Timeline:** Enter any order code or click fast-test chips (`#ORD-829143-TR`) to see a visual logistics timeline (*Order Placed ➔ Packing ➔ Handed to Carrier ➔ Out for Delivery ➔ Delivered*).
-
-### ❤️ 6. Persistent Wishlist (`/favorites`)
-- **Heart Toggle Animation:** Quick save from any product card.
-- **Cross-Tab Synchronization:** Custom window event dispatcher syncing the live navbar wishlist badge in real time.
-- **Direct Add to Basket:** Move items straight from the wishlist into the active shopping cart.
-
-### 🏢 7. Complete Support & Corporate Suite
-- **About Us (`/about`):** Company vision, mission, and key metrics.
-- **Contact & Live Support (`/contact`):** Validated contact form with toast feedback, headquarters location, and WhatsApp hotline.
-- **Easy 14-Day Returns (`/returns`):** Step-by-step return guide and shipping code information.
-- **Help Center & FAQ (`/faq`):** Searchable accordion FAQ covering orders, shipping, and warranty.
-- **Legal Compliance (`/privacy`, `/terms`):** GDPR / KVKK-compliant privacy policy and terms of service.
+The platform includes a curated 30-item catalog across 6 distinct categories, real-time URL query synchronized search and multi-criteria sorting, a tiered shipping progress calculator, an interactive coupon discount engine, multi-step checkout with printable receipts, an administrative backoffice, and an interactive shipment tracking timeline.
 
 ---
 
-## 📐 Architecture & Resilience
+## System Architecture
 
 ```mermaid
 flowchart TD
-    subgraph Client ["Client Presentation Layer (Browser)"]
+    subgraph ClientLayer ["Client Presentation Layer (Browser)"]
         UI["Tailwind CSS v4 Responsive Layout"]
         CartStore["useCart Hook (LocalStorage + Coupon Engine)"]
         Wishlist["Wishlist State (Custom Window Events)"]
         FilterEngine["URL Sync Search & Filter Utilities"]
     end
 
-    subgraph AppRouter ["Next.js 15 App Router Layer"]
-        HomePage["/ (Catalog & Category Pills)"]
-        ProductPage["/product/:id (Detail & Customer Reviews)"]
-        CartPage["/cart (Shipping Bar & Coupons)"]
+    subgraph AppRouterLayer ["Next.js 15 App Router"]
+        HomePage["/ (Showcase, Categories & Products Grid)"]
+        ProductPage["/product/:id (Detail, Specs & Reviews)"]
+        CartPage["/cart (Shipping Progress & Coupons)"]
         CheckoutPage["/checkout (Address & Delivery Wizard)"]
-        SuccessPage["/checkout/success (Printable Receipt)"]
-        TrackPage["/tracking (Live Shipment Timeline)"]
+        SuccessPage["/checkout/success (Printable Order Receipt)"]
+        TrackPage["/tracking (Interactive Shipment Timeline)"]
         AdminArea["/admin & /admin/products (Backoffice Suite)"]
         Corporate["/about, /contact, /faq, /returns, /deals"]
     end
 
-    subgraph APILayer ["Backend & Route Handlers"]
+    subgraph BackendLayer ["Backend Route Handlers"]
         ProductsAPI["/api/products (GET, POST)"]
         ProductDetailAPI["/api/products/:id (GET, PUT, DELETE)"]
         RegisterAPI["/api/register (POST)"]
@@ -113,110 +69,174 @@ flowchart TD
 
     subgraph DataResilience ["Data Layer with Automatic Resilience"]
         PrismaClient["Prisma ORM 6.1"]
-        MongoAtlas[("MongoDB Atlas Cloud Database")]
-        InMemoryStore[("In-Memory Local Resilient Store")]
+        MongoAtlas[("MongoDB Atlas Cloud Cluster")]
+        InMemoryStore[("In-Memory Local Resilient Fallback")]
     end
 
-    UI --> AppRouter
+    UI --> AppRouterLayer
     CartStore --> CartPage
     CartStore --> CheckoutPage
-    Wishlist --> AppRouter
+    Wishlist --> AppRouterLayer
     FilterEngine --> HomePage
-    AppRouter --> APILayer
-    APILayer --> PrismaClient
-    PrismaClient -->|Primary: Cluster Online| MongoAtlas
-    PrismaClient -.->|Fallback: Network / DNS Timeout| InMemoryStore
+    AppRouterLayer --> BackendLayer
+    BackendLayer --> PrismaClient
+    PrismaClient -->|Primary: Cluster Active| MongoAtlas
+    PrismaClient -.->|Fallback: Network or DNS Timeout| InMemoryStore
 ```
 
-> **🛡️ Zero-Downtime Fallback Architecture:** If MongoDB Atlas is sleeping or network DNS resolution fails, the platform automatically intercepts the timeout and serves data from a high-fidelity local in-memory store. Visitors and recruiters will **never encounter a 500 error or broken UI**.
+---
+
+## Key Functional Modules
+
+### 1. Multi-Category Product Catalog (30 Products)
+- Six structured categories: Phones, Laptops, Smartwatches, Audio Accessories, Shoes, and Backpacks (5 products per category).
+- Universal image adapter supporting external HTTPS CDN links, relative static assets, and Base64 strings without cumulative layout shift.
+- Realistic pricing, technical descriptions, stock status indicators, and customer review scores.
+
+### 2. URL-Synchronized Search, Filter & Sort Engine
+- Native Next.js URL parameter synchronization (`?category=...&search=...`) ensuring query states are bookmarkable and shareable across sessions.
+- Multi-criteria sorting:
+  - Price: Low to High
+  - Price: High to Low
+  - Highest Customer Rating
+  - Alphabetical: A to Z
+  - Featured Items
+- Instant in-stock filter toggle with zero latency.
+- Bilingually normalized category matching (supporting both Turkish and English labels).
+
+### 3. Shopping Cart & Dynamic Coupon Engine
+- Threshold-based free shipping progress indicator (configured for orders over 500 TRY).
+- Interactive promo code validation:
+  - `TATLI10`: Applies 10% discount to the cart total.
+  - `TATLI20`: Applies 20% discount on carts valued at 1,000 TRY or higher.
+  - `KARGO`: Eliminates the 49.90 TRY shipping charge.
+- SSR hydration-safe storage model using custom `isMounted` guards to prevent hydration mismatches.
+
+### 4. Multi-Step Checkout & Order Fulfillment
+- Recipient address validation (Full Name, Phone, City, District, and Street Address).
+- Shipping method selection between Standard Carrier Delivery and Express Courier Service.
+- Simulated 3D Secure credit card payment authorization.
+- Printable order confirmation screen (`/checkout/success`) providing alphanumeric tracking codes (e.g., `#ORD-829143-TR`), estimated arrival windows, and itemized receipts.
+
+### 5. Interactive Shipment Tracking (`/tracking`)
+- Real-time parcel status inquiry by order identifier or phone number.
+- Five-stage logistics timeline: Order Placed, Preparing & Packing, Handed to Carrier, Out for Delivery, Delivered.
+- One-click test chips for instant demonstration.
+
+### 6. Persistent Wishlist (`/favorites`)
+- Client-side heart toggle on product cards with browser storage persistence.
+- Custom window event broadcasting that updates navbar badge counters across independent components.
+- Direct transfer of favorited products into the active shopping cart.
+
+### 7. Administrative Backoffice Suite (`/admin`)
+- Metric summary cards: Total Revenue, Total Orders, Active Catalog Items, and User Count.
+- Inventory control table with live search, stock status toggles, in-place edit modals, and delete confirmations.
+- Dedicated product creation wizard (`/admin/products/new`) with live image preview.
+
+### 8. Corporate & Customer Support Suite
+- Company Profile (`/about`): Corporate history, mission, vision, and operational metrics.
+- Support & Inquiry (`/contact`): Validated messaging form, customer service hotline, and location data.
+- Returns Policy (`/returns`): Step-by-step 14-day return and exchange guidelines.
+- Help Center (`/faq`): Categorized accordion view addressing common buyer inquiries.
+- Legal Documentation (`/privacy`, `/terms`): KVKK and GDPR compliant terms and privacy statements.
 
 ---
 
-## 🛠️ Tech Stack
+## Zero-Downtime Data Layer Resilience
 
-| Category | Technology | Purpose |
-|---|---|---|
-| **Framework** | **Next.js 15.4** (App Router) | Server & Client Components, Dynamic Route Handlers, Streaming SSR |
-| **Frontend UI** | **React 19.0** | Modern component lifecycle, transitions, hooks |
-| **Language** | **TypeScript 5.0** | 100% strict type safety, zero `any` declarations |
-| **Styling** | **Tailwind CSS v4** | Next-generation utility-first styling with zero runtime overhead |
-| **Database & ORM**| **MongoDB Atlas + Prisma 6.1**| Cloud NoSQL database with type-safe schema definitions |
-| **Authentication** | **NextAuth.js 4 + Bcrypt** | Secure JWT sessions, Google OAuth, and credential authentication |
-| **Unit Testing** | **Vitest 5.0** | High-speed automated unit testing for business logic |
-| **Icons & UI Kits**| **React Icons & Material UI** | Rating stars and iconography |
-| **Notifications** | **React Hot Toast** | Lightweight dynamic toast alerts |
-| **CI / CD** | **GitHub Actions** | Automated build, test, and lint validation on every push |
+Cloud database instances (such as free-tier MongoDB Atlas clusters) may undergo maintenance, pause during inactivity, or encounter DNS resolution delays in corporate networks. 
+
+To eliminate single points of failure, Tatli.com implements a resilient fallback architecture:
+- If Prisma successfully establishes a connection to MongoDB Atlas, all read and write queries execute against the cloud cluster.
+- If a connection timeout or DNS error occurs, the API route handlers automatically route requests to an in-memory replica store initialized from `utils/Products.tsx`.
+- This ensures that recruiters, visitors, and automated test runners experience zero downtime or 500 errors.
 
 ---
 
-## 🧪 Automated Testing
+## Automated Unit Testing
 
-The project maintains comprehensive unit tests powered by **Vitest**:
+The repository maintains an automated test suite executed via **Vitest**:
 
 ```bash
-# Run tests once:
+# Run unit tests once:
 npm run test
 
-# Run tests in interactive watch mode:
+# Run unit tests in watch mode:
 npm run test:watch
 ```
 
-### Test Coverage Highlights:
+### Test Coverage Summary:
 - **`tests/cartUtils.test.ts` (8 Tests):**
-  - Cart subtotal calculations with quantity multipliers.
-  - 500 ₺ free shipping qualification threshold.
-  - Percentage coupons (`TATLI10`, `TATLI20`) and fixed shipping coupons (`KARGO`).
-  - Turkish Lira (`₺`) currency formatting with thousand-separators.
+  - Subtotal computation across varying item quantities.
+  - Free shipping threshold qualification logic.
+  - Percentage discount coupons (`TATLI10`, `TATLI20`) and shipping waivers (`KARGO`).
+  - Turkish Lira (`TRY`) currency formatting.
 - **`tests/filterUtils.test.ts` (5 Tests):**
-  - Case-insensitive, bilingual category matching (`Telefon` / `Phone`, `Çanta` / `Bag`).
-  - Search term matching across titles, brands, and descriptions.
-  - Stock availability filters.
-  - Ascending and descending price sorting algorithms.
+  - Case-insensitive category filtering with bilingual normalization.
+  - Multi-attribute text search across product names, brands, and descriptions.
+  - Stock availability isolation.
+  - Ascending and descending price ordering algorithms.
 
 ---
 
-## 📂 Directory Structure
+## Technology Stack Breakdown
+
+| Layer | Technology | Function |
+|---|---|---|
+| **Framework** | Next.js 15.4 (App Router) | Server and Client Components, API Route Handlers, Streaming SSR |
+| **Frontend Core** | React 19.0 | Concurrent features, hooks, component architecture |
+| **Language** | TypeScript 5.0 | Strict type safety across domain models, API payloads, and state |
+| **Styling** | Tailwind CSS v4 | High-performance CSS utility architecture |
+| **Database & ORM** | MongoDB Atlas + Prisma 6.1 | NoSQL cloud database model with typed schema client |
+| **Authentication** | NextAuth.js 4 + Bcrypt | Secure JWT session handling, credentials login, password hashing |
+| **Unit Testing** | Vitest 5.0 | Sub-second test execution engine |
+| **Component Kit** | React Icons, Material UI | Rating components and iconography |
+| **Alert System** | React Hot Toast | Lightweight notifications |
+| **CI Automation** | GitHub Actions | Automated build, lint, and test validation on commit |
+
+---
+
+## Project Directory Structure
 
 ```text
 ├── .github/
 │   └── workflows/
-│       └── ci.yml               # Automated CI pipeline (build & test)
+│       └── ci.yml               # Automated CI pipeline
 ├── app/
-│   ├── about/                   # About us corporate story & metrics
-│   ├── admin/                   # Admin dashboard KPI metrics
-│   │   └── products/            # Product table, edit modal & creation wizard
-│   ├── api/                     # REST Route Handlers (products, auth, register)
-│   ├── cart/                    # Shopping cart with coupon engine
-│   ├── checkout/                # Multi-step checkout & /success order receipt
-│   ├── contact/                 # Contact form & customer support channels
-│   ├── deals/                   # Active campaigns & coupon copy cards
-│   ├── faq/                     # Searchable FAQ accordion
-│   ├── favorites/               # Wishlist management page
-│   ├── login/ & register/       # NextAuth authentication pages
-│   ├── privacy/ & terms/        # Legal KVKK / GDPR compliance documents
-│   ├── product/[productId]/     # Dynamic product detail & review tabs
-│   ├── profile/                 # User profile & past order history
-│   ├── returns/                 # 14-day easy return policy guide
-│   ├── tracking/                # Interactive shipment tracking timeline
-│   ├── components/              # Modular UI components (Navbar, Cards, Modals)
-│   ├── layout.tsx               # Root Layout with Suspense boundaries & Toaster
+│   ├── about/                   # Company history and metrics
+│   ├── admin/                   # Administrative dashboard and inventory control
+│   ├── api/                     # REST Route Handlers
+│   ├── cart/                    # Shopping cart with coupon calculations
+│   ├── checkout/                # Checkout wizard and receipt generation
+│   ├── contact/                 # Customer service contact form
+│   ├── deals/                   # Promotional campaigns and coupon codes
+│   ├── faq/                     # Searchable accordion FAQ
+│   ├── favorites/               # Wishlist management
+│   ├── login/ & register/       # User authentication routes
+│   ├── privacy/ & terms/        # Legal compliance documents
+│   ├── product/[productId]/     # Dynamic product detail pages
+│   ├── profile/                 # User profile and order history
+│   ├── returns/                 # Return and exchange guidelines
+│   ├── tracking/                # Shipment tracking timeline
+│   ├── components/              # Modular UI components
+│   ├── layout.tsx               # Root Layout with Suspense boundaries
 │   └── page.tsx                 # Main showcase page
 ├── hooks/
-│   └── useCart.tsx              # Cart, coupon, and shipping state management
+│   └── useCart.tsx              # Cart state and coupon management
 ├── prisma/
-│   └── schema.prisma            # MongoDB database models (User, Product, Review)
+│   └── schema.prisma            # MongoDB database models
 ├── tests/                       # Automated Vitest test suites
-├── types/                       # Universal TypeScript domain interfaces
+├── types/                       # Universal TypeScript interfaces
 ├── utils/
-│   ├── cartUtils.ts             # Pure financial calculation utilities
-│   ├── filterUtils.ts           # Pure filtering and sorting utilities
-│   └── Products.tsx             # 30-item curated fallback catalog
+│   ├── cartUtils.ts             # Financial and shipping calculation functions
+│   ├── filterUtils.ts           # Filtering and sorting functions
+│   └── Products.tsx             # 30-item curated fallback dataset
 └── package.json
 ```
 
 ---
 
-## 💻 Getting Started
+## Local Installation & Setup
 
 ### 1. Clone the Repository
 ```bash
@@ -230,18 +250,20 @@ npm install
 ```
 
 ### 3. Configure Environment Variables
-Copy the `.env.example` file:
+Copy the sample environment file:
 ```bash
 cp .env.example .env
 ```
-Fill in your own credentials:
+
+Configure your credentials:
 ```env
 DATABASE_URL="mongodb+srv://<username>:<password>@cluster0.mongodb.net/shop?retryWrites=true&w=majority"
 NEXTAUTH_SECRET="your_nextauth_secret_key"
 GOOGLE_CLIENT_ID="your_google_oauth_client_id"
 GOOGLE_CLIENT_SECRET="your_google_oauth_client_secret"
 ```
-*(Note: If no database URL is provided, the application automatically runs using the resilient local fallback).*
+
+*(Note: If no database URL is supplied, the platform executes using the built-in resilient local fallback).*
 
 ### 4. Generate Prisma Client
 ```bash
@@ -252,9 +274,9 @@ npx prisma generate
 ```bash
 npm run dev
 ```
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+Navigate to [http://localhost:3000](http://localhost:3000) (or the active port reported in terminal).
 
-### 6. Production Build & Start
+### 6. Production Build
 ```bash
 npm run build
 npm run start
@@ -262,32 +284,27 @@ npm run start
 
 ---
 
-## 🎟️ Active Demo Coupons
+## Available Test Coupons
 
-| Coupon Code | Discount Value | Requirement |
+| Coupon Code | Value | Usage Terms |
 |---|---|---|
-| **`TATLI10`** | **10% OFF** | Applies to entire cart |
-| **`TATLI20`** | **20% OFF** | Minimum cart value of 1.000 ₺ |
-| **`KARGO`** | **FREE SHIPPING** | Eliminates 49,90 ₺ shipping fee |
+| **`TATLI10`** | 10% Discount | Valid across all catalog items |
+| **`TATLI20`** | 20% Discount | Requires minimum cart total of 1,000 TRY |
+| **`KARGO`** | Free Delivery | Waives the standard 49.90 TRY shipping fee |
 
 ---
 
-## 👩‍💻 Developer & Author
-
-<div align="center">
+## Author & Engineering Contact
 
 ### **Hatice Tatlı**
 **Computer Engineer & Full-Stack Software Developer**
 
-[![GitHub](https://img.shields.io/badge/GitHub-haticetatli-181717?style=for-the-badge&logo=github)](https://github.com/haticetatli)
-[![Email](https://img.shields.io/badge/Email-20227170018%40ogr.oku.edu.tr-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:20227170018@ogr.oku.edu.tr)
-
-*Graduated with a Bachelor's Degree in Computer Engineering. Passionate about building modern, scalable, and resilient web architectures with clean TypeScript and React/Next.js ecosystem.*
-
-</div>
+- **GitHub Profile:** [https://github.com/haticetatli](https://github.com/haticetatli)
+- **Academic / Engineering Email:** `20227170018@ogr.oku.edu.tr`
+- **Primary Specialization:** Next.js, React, TypeScript, Node.js, Full-Stack Web Development, Clean Architecture.
 
 ---
 
-## 📄 License
+## License
 
 This project is licensed under the [MIT License](LICENSE).
